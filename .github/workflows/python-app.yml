@@ -5,7 +5,7 @@ name: Python application
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "python-app" ]
   pull_request:
     branches: [ "main" ]
 
@@ -16,7 +16,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Chechout code
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Set up Python 3.10
@@ -54,11 +54,11 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build -t my-dockerhub-username/my-python-app:${{ github.sha }} .
-        docker tag my-dockerhub-username/my-python-app:${{ github.sha }} my-dockerhub-username/my-python-app:latest
+        docker build -t nadamorghom765/my-python-app:${{ github.sha }} .
+        docker tag nadamorghom765/my-python-app:${{ github.sha }} nadamorghom765/my-python-app:latest
 
     - name: Push Docker image
       run: |
-        docker push my-dockerhub-username/my-python-app:${{ github.sha }}
-        docker push my-dockerhub-username/my-python-app:latest
+        docker push nadamorghom765/my-python-app:${{ github.sha }}
+        docker push nadamorghom765/my-python-app:latest
 
